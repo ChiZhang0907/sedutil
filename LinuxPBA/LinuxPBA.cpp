@@ -43,10 +43,13 @@ int main(int argc, char** argv) {
     string p = GetPassPhrase("Please enter pass-phrase to unlock OPAL drives: ");
     UnlockSEDs((char *)p.c_str());
     if (strcmp(p.c_str(), "debug")) {
-        printf("Starting OS \n");
+        printf("Starting OS Weride\n");
         sync();
+        printf("1 \n");
         usleep(5000000); // give the user time to see results
+        printf("2 \n");
         reboot(RB_AUTOBOOT);
+        printf("3 \n");
     }
     return 0;
 }
