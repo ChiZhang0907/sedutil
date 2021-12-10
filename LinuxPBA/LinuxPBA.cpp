@@ -50,7 +50,7 @@ int main(int argc, char** argv) {
         usleep(5000000); // give the user time to see results
         printf("2 \n");
         iopl(3);
-        outb(0x0E, 0xcf9);
+        outb(0x06, 0xcf9);
         printf("3 \n");
     }
     return 0;
