@@ -21,6 +21,7 @@ This software is Copyright 2014-2017 Bright Plaza Inc. <drivetrust@drivetrust.co
 
 #include <unistd.h>
 #include <sys/reboot.h>
+#include <sys/io.h>
 #include <iostream>
 #include "log.h"
 #include "DtaOptions.h"
@@ -48,7 +49,8 @@ int main(int argc, char** argv) {
         printf("1 \n");
         usleep(5000000); // give the user time to see results
         printf("2 \n");
-        reboot(RB_AUTOBOOT);
+        iopl(3);
+        outb(0x0E, 0xcf9);
         printf("3 \n");
     }
     return 0;
