@@ -21,6 +21,7 @@ This software is Copyright 2014-2017 Bright Plaza Inc. <drivetrust@drivetrust.co
 
 #include <unistd.h>
 #include <sys/reboot.h>
+#include <sys/io.h>
 #include <iostream>
 #include "log.h"
 #include "DtaOptions.h"
@@ -38,15 +39,15 @@ int main(int argc, char** argv) {
     RCLog::Level() = CLog::FromInt(2);
     LOG(D4) << "Legacy PBA start" << endl;
 //    system ("tput clear");
-    printf("DTA LINUX Pre Boot Authorization \n");
-    printf("Test Version\n");
+    printf("WeRide DTA LINUX Pre Boot Authorization \n");
     string p = GetPassPhrase();
     UnlockSEDs((char *)p.c_str());
     if (strcmp(p.c_str(), "debug")) {
         printf("Starting OS \n");
         sync();
-        usleep(5000000); // give the user time to see results
-        reboot(RB_AUTOBOOT);
+        usleep(1000000); // give the user time to see results
+        iopl(3);
+        outb(0x06, 0xcf9);
     }
     return 0;
 }
